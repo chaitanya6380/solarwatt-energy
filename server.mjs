@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB connection
-const mongoUri = process.env.MONGO_URI || 'PASTE_YOUR_MONGODB_URI_HERE';
+const mongoUri = process.env.MONGO_URI || 'mongodb+srv://chaitustar13_db_user:mv6YJ4SQyFpjuMFw@cluster0.r6ieqrx.mongodb.net/?appName=Cluster0';
 
 mongoose
   .connect(mongoUri, {
