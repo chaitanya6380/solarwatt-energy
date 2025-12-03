@@ -8,12 +8,22 @@ const Contact: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
+  // Backend API base URL (configure via Vite env variable)
+  const apiBaseUrl = import.meta.env.VITE_API_URL || '';
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    if (!apiBaseUrl) {
+      console.error('VITE_API_URL is not configured');
+      alert('Form is not configured correctly. Please contact the site administrator.');
+      setIsSubmitting(false);
+      return;
+    }
     
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
+      const response = await fetch(`${apiBaseUrl}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
